@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Color Theory Palette</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#E9E1F5;
+  --ink:#3B2F4A;
+  --ink2:#5E5070;
+  --card:rgba(255,255,255,.58);
+  --line:rgba(59,47,74,.18);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Cinzel Decorative",Georgia,"Times New Roman",serif;min-height:100vh;overflow-x:hidden;position:relative}
+
+#stars{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.bgblob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.55;z-index:0;pointer-events:none;animation:float 14s ease-in-out infinite}
+.b1{width:340px;height:340px;background:#F3D6E4;top:-80px;left:-90px}
+.b2{width:300px;height:300px;background:#D3C3EE;bottom:8%;right:-90px;animation-delay:-5s}
+.b3{width:240px;height:240px;background:#F6E2D0;top:45%;left:-70px;animation-delay:-9s}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(24px,-30px)}}
+.wrap{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:44px 20px 80px}
+header{text-align:center;margin-bottom:34px}
+.eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink2);opacity:0;animation:rise .9s .1s forwards}
+h1{font-size:clamp(30px,7vw,58px);font-weight:900;line-height:1.1;margin:14px 0 10px;opacity:0;animation:rise .9s .3s forwards}
+h1 span{display:block;font-weight:400;font-size:.5em;letter-spacing:.1em;margin-top:8px;color:var(--ink2)}
+.sub{font-size:clamp(12px,2.4vw,15px);color:var(--ink2);max-width:640px;margin:0 auto;line-height:1.7;font-family:Georgia,serif;opacity:0;animation:rise .9s .5s forwards}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+section.group{margin-top:52px;opacity:0;transform:translateY(34px);transition:opacity .9s ease,transform .9s ease}
+section.group.in{opacity:1;transform:none}
+.ghead{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.gnum{font-size:34px;font-weight:900;color:var(--ink2);opacity:.45}
+.gtitle{font-size:clamp(20px,4.6vw,28px);font-weight:700}
+.gnote{font-family:Georgia,serif;font-size:14px;color:var(--ink2);line-height:1.7;margin:4px 0 20px;max-width:680px}
+.line{height:1px;background:linear-gradient(90deg,var(--ink2),transparent);margin-bottom:18px;transform-origin:left;transform:scaleX(0);transition:transform 1.2s ease .2s}
+.group.in .line{transform:scaleX(1)}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 20px;backdrop-filter:blur(4px)}
+.skin{display:grid;grid-template-columns:minmax(200px,260px) 1fr;gap:22px;align-items:center}
+@media (max-width:640px){.skin{grid-template-columns:1fr}}
+.skinart{width:100%;height:auto;display:block}
+.skinart .paint{fill:none;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.8s cubic-bezier(.6,.05,.2,1)}
+.group.in .skinart .paint{stroke-dashoffset:0}
+.skinname{font-size:clamp(20px,4vw,26px);font-weight:900;margin-bottom:10px;line-height:1.25}
+.skintext{font-family:Georgia,serif;font-size:14px;line-height:1.75;color:var(--ink2);margin-bottom:10px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.fact{font-size:10.5px;letter-spacing:.1em;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.5)}
+
+.refwrap{display:grid;grid-template-columns:1fr;gap:16px}
+.refcard{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+.refart{flex:0 0 220px;max-width:100%}
+.refart svg{width:100%;height:auto;display:block}
+.refart .paint{fill:none;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.8s cubic-bezier(.6,.05,.2,1)}
+.group.in .refart .paint{stroke-dashoffset:0}
+.reftext{flex:1 1 260px}
+.reftitle{font-size:18px;font-weight:700;margin-bottom:6px}
+.props{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px}
+.prop{background:rgba(255,255,255,.5);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.prop b{display:block;font-size:10px;letter-spacing:.16em;color:var(--ink2);font-weight:700;margin-bottom:4px}
+.prop span{font-family:Georgia,serif;font-size:13px;color:var(--ink)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 16px 18px;backdrop-filter:blur(4px);opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease,box-shadow .3s}
+.group.in .card{opacity:1;transform:none}
+.group.in .card:nth-child(1){transition-delay:.15s}
+.group.in .card:nth-child(2){transition-delay:.3s}
+.group.in .card:nth-child(3){transition-delay:.45s}
+.group.in .card:nth-child(4){transition-delay:.6s}
+.card:hover{box-shadow:0 14px 34px rgba(80,55,110,.18);transform:translateY(-4px)}
+.stroke{height:74px;width:100%;margin-bottom:12px;display:block}
+.stroke path.paint{fill:none;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s cubic-bezier(.6,.05,.2,1)}
+.stroke path.hl{fill:none;stroke-linecap:round;stroke:rgba(255,255,255,.35);stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.8s cubic-bezier(.6,.05,.2,1) .15s}
+.group.in .stroke path.paint,.group.in .stroke path.hl{stroke-dashoffset:0}
+.group.in .card:nth-child(2) .stroke path{transition-delay:.3s}
+.group.in .card:nth-child(3) .stroke path{transition-delay:.45s}
+.group.in .card:nth-child(4) .stroke path{transition-delay:.6s}
+.cname{font-size:16px;font-weight:700;margin-bottom:8px;line-height:1.3}
+.use{display:inline-block;font-size:10px;letter-spacing:.16em;padding:4px 10px;border-radius:999px;color:#fff;margin-bottom:10px;margin-right:4px}
+.u-eyes{background:#8C6E9B}.u-cheeks{background:#D9838D}.u-lips{background:#B8635B}.u-face{background:#B99377}
+.hex{font-size:10px;letter-spacing:.12em;color:var(--ink2)}
+.desc{font-family:Georgia,serif;font-size:13.5px;line-height:1.65;color:var(--ink2);margin-bottom:8px}
+.why{font-family:Georgia,serif;font-size:13.5px;line-height:1.65;color:var(--ink)}
+.why em{font-style:normal;font-family:"Cinzel Decorative",Georgia,serif;font-size:10.5px;letter-spacing:.14em;color:var(--ink2);display:block;margin-bottom:2px}
+
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.rule{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+.rule h3{font-size:15px;margin-bottom:8px}
+.rule p{font-family:Georgia,serif;font-size:13.5px;line-height:1.65;color:var(--ink2)}
+.swrow{display:flex;gap:6px;margin-top:12px}
+.sw{flex:1;height:26px;border-radius:8px;border:1px solid rgba(0,0,0,.1)}
+
+.avoid{margin-top:52px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 20px;opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s}
+.avoid.in{opacity:1;transform:none}
+.avoid h2{font-size:22px;margin-bottom:8px}
+.avoid p{font-family:Georgia,serif;font-size:14px;line-height:1.7;color:var(--ink2);margin-bottom:14px}
+.dots{display:flex;flex-wrap:wrap;gap:14px}
+.dots span{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.06em}
+.dots i{width:30px;height:30px;border-radius:50%;display:block;position:relative;border:1px solid rgba(0,0,0,.15)}
+.dots i::after{content:"";position:absolute;left:-3px;right:-3px;top:50%;height:2px;background:#3B2F4A;transform:rotate(-40deg)}
+footer{text-align:center;margin-top:50px;font-size:12px;letter-spacing:.2em;color:var(--ink2);line-height:1.9}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .eyebrow,h1,.sub,section.group,.card,.avoid{opacity:1!important;transform:none!important}
+  .paint,.stroke path{stroke-dashoffset:0!important}
+  .line{transform:none!important}
+}
+</style>
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="bgblob b1"></div><div class="bgblob b2"></div><div class="bgblob b3"></div>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Color Theory Guide</div>
+  <h1>My Color Palette<span>Light-to-Medium, Neutral-Warm</span></h1>
+  <p class="sub">A palette built from color theory alone: your skin tone, your undertone, and the shade of your favorite lip color, used as the anchor for everything else.</p>
+</header>
+
+<section class="group" id="g1">
+  <div class="ghead"><span class="gnum">I</span><h2 class="gtitle">Your Skin Tone</h2></div>
+  <p class="gnote">Skin tone has two parts: depth (how light or dark) and undertone (the hue underneath). Both decide which colors flatter you.</p>
+  <div class="line"></div>
+  <div class="panel skin">
+    <svg class="skinart" viewBox="0 0 240 190" role="img" aria-label="Brush strokes showing the skin tone range from light to medium neutral-warm">
+      <path class="paint" pathLength="1" d="M20 40 C70 14,140 62,220 34" stroke="#EBCDB8" stroke-width="34"/>
+      <path class="paint" pathLength="1" d="M20 92 C74 68,142 116,220 88" stroke="#D9B9A0" stroke-width="34" style="transition-delay:.3s"/>
+      <path class="paint" pathLength="1" d="M20 146 C76 122,144 168,220 142" stroke="#C99F84" stroke-width="34" style="transition-delay:.6s"/>
+    </svg>
+    <div>
+      <div class="skinname">Light-to-Medium with a Neutral-Warm Undertone</div>
+      <p class="skintext">Your depth sits in the light-to-medium band, and your undertone is neutral leaning warm: a balance of pink and golden-peach, with the gold slightly ahead. Your foundation shade, Beech, follows this exactly, a soft warm beige with a whisper of peach.</p>
+      <p class="skintext">A neutral-warm undertone is flexible. It carries both soft pinks and warm peaches, as long as they are muted. Very cool, icy colors clash with the gold, and very orange or deep bronze colors overpower a light-to-medium depth.</p>
+      <div class="facts">
+        <span class="fact">DEPTH: LIGHT-TO-MEDIUM</span>
+        <span class="fact">UNDERTONE: NEUTRAL-WARM</span>
+        <span class="fact">BEST CHROMA: SOFT AND MUTED</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="group" id="g2">
+  <div class="ghead"><span class="gnum">II</span><h2 class="gtitle">Your Anchor Shade</h2></div>
+  <p class="gnote">Your goal palette is built from the lip color you already know suits you. Reading its properties tells us what the rest of the face should match.</p>
+  <div class="line"></div>
+  <div class="panel refcard">
+    <div class="refart">
+      <svg viewBox="0 0 220 110" role="img" aria-label="Brush stroke of the anchor lip shade, Apple Toast">
+        <path class="paint" pathLength="1" d="M14 60 C58 18,120 100,206 44" stroke="#C97F78" stroke-width="46"/>
+        <path class="paint" pathLength="1" d="M20 46 C62 8,122 86,200 34" stroke="rgba(255,255,255,.3)" stroke-width="7" style="transition-delay:.2s"/>
+      </svg>
+    </div>
+    <div class="reftext">
+      <div class="reftitle">Apple Toast, a warm rose-brown</div>
+      <p class="skintext">4U2 Girlfriend's Mousse Lip Tint in No. 01 Apple Toast is a warm, toasty rose-brown: pink and brown blended into one muted shade. It works because it repeats what is already in your skin, warmth from the brown and softness from the rose.</p>
+      <div class="props">
+        <div class="prop"><b>HUE</b><span>Red-pink, warmed by brown</span></div>
+        <div class="prop"><b>TEMPERATURE</b><span>Warm-leaning neutral</span></div>
+        <div class="prop"><b>SATURATION</b><span>Muted, not vivid</span></div>
+        <div class="prop"><b>VALUE</b><span>Mid, slightly deeper than skin</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="group" id="g3">
+  <div class="ghead"><span class="gnum">III</span><h2 class="gtitle">The Goal: Nude with a Hint of Pink</h2></div>
+  <p class="gnote">The target is a palette close to your skin in value, muted in saturation, and warm in temperature, with rose as the single accent. Apple Toast sets the mood, and the shades below stay within its family.</p>
+  <div class="line"></div>
+  <div class="rules">
+    <div class="rule"><h3>Stay muted</h3><p>Low saturation keeps colors close to skin. That is what reads as nude, not bare.</p><div class="swrow"><div class="sw" style="background:#F3DCCB"></div><div class="sw" style="background:#E9C4B0"></div><div class="sw" style="background:#DDA9A0"></div><div class="sw" style="background:#C97F78"></div></div></div>
+    <div class="rule"><h3>Keep the warmth</h3><p>A slightly warm temperature matches the golden side of your undertone, so nothing looks ashy.</p><div class="swrow"><div class="sw" style="background:#F5D2C4"></div><div class="sw" style="background:#F2B5A7"></div><div class="sw" style="background:#E5AB9C"></div><div class="sw" style="background:#B98576"></div></div></div>
+    <div class="rule"><h3>One pink accent</h3><p>Let rose appear in a single place, the cheeks or lips, and repeat it softly elsewhere. This is the hint of pink.</p><div class="swrow"><div class="sw" style="background:#F1C4C0"></div><div class="sw" style="background:#E9A7A9"></div><div class="sw" style="background:#D98E8E"></div><div class="sw" style="background:#C48E86"></div></div></div>
+  </div>
+</section>
+
+<section class="group" id="g4">
+  <div class="ghead"><span class="gnum">IV</span><h2 class="gtitle">Cheeks</h2></div>
+  <p class="gnote">Cheeks carry the pink. Choose colors slightly lighter than Apple Toast so the lips stay the deepest point on the face.</p>
+  <div class="line"></div>
+  <div class="grid">
+    <div class="card">
+      <svg class="stroke" viewBox="0 0 300 74" preserveAspectRatio="none"><path class="paint" pathLength="1" d="M12 40 C50 10,100 64,150 36 S240 16,288 42" stroke="#E9A7A9" stroke-width="32"/><path class="hl" pathLength="1" d="M18 32 C52 4,100 54,150 28 S238 8,282 34" stroke-width="6"/></svg>
+      <div class="cname">Soft Rose</div><span class="use u-cheeks">CHEEKS</span><span class="hex">#E9A7A9</span>
+      <p class="desc">A clean, gentle pink with a little warmth. Light in value, low in saturation.</p>
+      <p class="why"><em>WHY IT WORKS</em>Pink on the apples of the cheeks imitates a natural blush. It repeats the rose in Apple Toast at a lighter value, so the two look related without matching.</p>
+    </div>
+    <div class="card">
+      <svg class="stroke" viewBox="0 0 300 74" preserveAspectRatio="none"><path class="paint" pathLength="1" d="M12 36 C56 62,102 12,152 40 S240 60,288 34" stroke="#F2B5A7" stroke-width="32"/><path class="hl" pathLength="1" d="M18 28 C58 52,102 4,152 30 S238 50,282 26" stroke-width="6"/></svg>
+      <div class="cname">Peachy Pink</div><span class="use u-cheeks">CHEEKS</span><span class="hex">#F2B5A7</span>
+      <p class="desc">A soft pink with peach mixed in, sitting between rose and coral.</p>
+      <p class="why"><em>WHY IT WORKS</em>Your undertone has gold in it, so a little peach inside the pink keeps the cheeks from looking cold. It gives a warm, healthy flush that still reads pink.</p>
+    </div>
+    <div class="card">
+      <svg class="stroke" viewBox="0 0 300 74" preserveAspectRatio="none"><path class="paint" pathLength="1" d="M12 42 C52 14,98 60,148 34 S236 14,288 40" stroke="#D98E8E" stroke-width="32"/><path class="hl" pathLength="1" d="M18 34 C54 6,98 50,148 26 S234 6,282 32" stroke-width="6"/></svg>
+      <div class="cname">Dusty Rose</div><span class="use u-cheeks">CHEEKS</span><span class="hex">#D98E8E</span>
+      <p class="desc">A muted rose with a touch of brown, greyed slightly to lower its intensity.</p>
+      <p class="why"><em>WHY IT WORKS</em>It is the closest cheek color to Apple Toast, because both share a brown-softened rose. It is the choice for evenings, when the whole face can be a little deeper.</p>
+    </div>
+    <div class="card">
+      <svg class="stroke" viewBox="0 0 300 74" preserveAspectRatio="none"><path class="paint" pathLength="1" d="M12 38 C60 64,104 8,154 38 S240 60,288 32" stroke="#F5D2C4" stroke-width="32"/><path class="hl" pathLength="1" d="M18 30 C62 54,104 0,154 30 S238 50,282 24" stroke-width="6"/></svg>
+      <div class="cname">Petal Glow</div><span class="use u-face">HIGHLIGHT</span><span class="hex">#F5D2C4</span>
+      <p class="desc">A pale pinky-peach, one or two values lighter than your skin.</p>
+      <p class="why"><em>WHY IT WORKS</em>Highlight works by being lighter than the skin around it. A pinky-peach tint does this without turning chalky, and it links the cheekbones to the pink blush below.</p>
+    </div>
+  </div>
+</section>
+
+<section class="group" id="g5">
+  <div class="ghead"><span class="gnum">V</span><h2 class="gtitle">Lips</h2></div>
+  <p class="gnote">Lips are the deepest point of the palette. Apple Toast stays your anchor, with lighter and pinker neighbors for variety.</p>
+  <div class="line"></div>
+  <div class="grid">
+    <div class="card">
+      <svg class="stroke" viewBox="0 0 300 74" preserveAspectRatio="none"><path class="paint" pathLength="1" d="M12 40 C54 12,100 62,150 36 S238 18,288 42" stroke="#C97F78" stroke-width="32"/><path class="hl" pathLength="1" d="M18 32 C56 4,100 52,150 28 S236 10,282 34" stroke-width="6"/></svg>
+      <div class="cname">Apple Toast (your anchor)</div><span class="use u-lips">LIPS</span><span class="hex">#C97F78</span>
+      <p class="desc">Warm rose-brown, muted, mid-value.</p>
+      <p class="why"><em>WHY IT WORKS</em>Its warmth matches your undertone and its muted saturation keeps the look nude. It defines the lips without competing with the cheeks.</p>
+    </div>
+    <div class="card">
+      <svg class="stroke" viewBox="0 0 300 74" preserveAspectRatio="none"><path class="paint" pathLength="1" d="M12 36 C56 62,100 10,150 38 S238 58,288 32" stroke="#D9A0A0" stroke-width="32"/><path class="hl" pathLength="1" d="M18 28 C58 52,100 2,150 30 S236 48,282 24" stroke-width="6"/></svg>
+      <div class="cname">Rose Nude</div><span class="use u-lips">LIPS</span><span class="hex">#D9A0A0</span>
+      <p class="desc">A beige-toned rose, lighter and pinker than Apple Toast.</p>
+      <p class="why"><em>WHY IT WORKS</em>Shifting one step toward pink and lighter gives a softer look. It sits close to the cheek pinks, so the face reads as one color story.</p>
+    </div>
+    <div class="card">
+      <svg class="stroke" viewBox="0 0 300 74" preserveAspectRatio="none"><path class="paint" pathLength="1" d="M12 42 C52 16,100 62,150 34 S240 16,288 40" stroke="#E5AB9C" stroke-width="32"/><path class="hl" pathLength="1" d="M18 34 C54 8,100 52,150 26 S238 8,282 32" stroke-width="6"/></svg>
+      <div class="cname">Peach Pink</div><span class="use u-lips">LIPS</span><span class="hex">#E5AB9C</span>
+      <p class="desc">A soft peachy pink, the lightest lip on this map.</p>
+      <p class="why"><em>WHY IT WORKS</em>Peach undertones melt into a golden-leaning skin, so this is the freshest, most daytime option.</p>
+    </div>
+    <div class="card">
+      <svg class="stroke" viewBox="0 0 300 74" preserveAspectRatio="none"><path class="paint" pathLength="1" d="M12 38 C58 64,104 8,152 38 S240 62,288 30" stroke="#B98576" stroke-width="32"/><path class="hl" pathLength="1" d="M18 30 C60 54,104 0,152 30 S238 52,282 22" stroke-width="6"/></svg>
+      <div class="cname">Nude Brown</div><span class="use u-lips">LIPS</span><span class="hex">#B98576</span>
+      <p class="desc">A soft brown-nude with a little rose, a step deeper than Apple Toast.</p>
+      <p class="why"><em>WHY IT WORKS</em>Brown-toned nudes share the warmth of a neutral-warm undertone. It is the most grown-up and low-key lip on the map.</p>
+    </div>
+  </div>
+</section>
+
+<section class="group" id="g6">
+  <div class="ghead"><span class="gnum">VI</span><h2 class="gtitle">Eyes</h2></div>
+  <p class="gnote">Eyes stay in soft pinks, mauves and warm browns. Light shades open the eye, and the deepest shade is used sparingly at the outer corner.</p>
+  <div class="line"></div>
+  <div class="grid">
+    <div class="card">
+      <svg class="stroke" viewBox="0 0 300 74" preserveAspectRatio="none"><path class="paint" pathLength="1" d="M12 40 C54 12,100 62,150 36 S238 16,288 42" stroke="#F3DCCB" stroke-width="32"/><path class="hl" pathLength="1" d="M18 32 C56 4,100 52,150 28 S236 8,282 34" stroke-width="6"/></svg>
+      <div class="cname">Cream Lid</div><span class="use u-eyes">EYES</span><span class="hex">#F3DCCB</span>
+      <p class="desc">A pale, warm cream just above skin value.</p>
+      <p class="why"><em>WHY IT WORKS</em>A shade close to your skin evens out veins and shadows on the lid, so the eye looks rested. It is also the calm base for deeper shades.</p>
+    </div>
+    <div class="card">
+      <svg class="stroke" viewBox="0 0 300 74" preserveAspectRatio="none"><path class="paint" pathLength="1" d="M12 36 C58 62,104 10,152 38 S240 60,288 32" stroke="#E9C4B0" stroke-width="32"/><path class="hl" pathLength="1" d="M18 28 C60 52,104 2,152 30 S238 50,282 24" stroke-width="6"/></svg>
+      <div class="cname">Peach Nude</div><span class="use u-eyes">EYES</span><span class="hex">#E9C4B0</span>
+      <p class="desc">A warm peach-beige with a touch of pink.</p>
+      <p class="why"><em>WHY IT WORKS</em>It echoes the peach in your undertone, so it adds gentle depth without looking dirty or tired.</p>
+    </div>
+    <div class="card">
+      <svg class="stroke" viewBox="0 0 300 74" preserveAspectRatio="none"><path class="paint" pathLength="1" d="M12 42 C52 14,98 60,148 34 S238 18,288 40" stroke="#C48E86" stroke-width="32"/><path class="hl" pathLength="1" d="M18 34 C54 6,98 50,148 26 S236 10,282 32" stroke-width="6"/></svg>
+      <div class="cname">Mauve Crease</div><span class="use u-eyes">EYES</span><span class="hex">#C48E86</span>
+      <p class="desc">A muted mauve with a rosy-brown base.</p>
+      <p class="why"><em>WHY IT WORKS</em>Mauve behaves like a natural shadow. Its pink undertone stays flattering in the crease instead of turning grey, and it connects the eyes to the rose on your cheeks and lips.</p>
+    </div>
+    <div class="card">
+      <svg class="stroke" viewBox="0 0 300 74" preserveAspectRatio="none"><path class="paint" pathLength="1" d="M12 38 C60 64,104 8,154 38 S240 60,288 32" stroke="#A8746B" stroke-width="32"/><path class="hl" pathLength="1" d="M18 30 C62 54,104 0,154 30 S238 50,282 24" stroke-width="6"/></svg>
+      <div class="cname">Soft Brown</div><span class="use u-eyes">EYES</span><span class="hex">#A8746B</span>
+      <p class="desc">A warm, rosy brown, never black or ashy.</p>
+      <p class="why"><em>WHY IT WORKS</em>Use it only at the outer corner or lash line. It is the deepest eye color and stays in the same warm family as Apple Toast, so the eyes and lips balance.</p>
+    </div>
+  </div>
+</section>
+
+<section class="avoid" id="av">
+  <h2>Colors that fight your skin tone</h2>
+  <p>Deep bronze, copper and dark chocolate sit far below your skin in value and far above it in saturation. On light-to-medium skin they look heavy and pull attention away from the soft pink. That is likely why your gifted palettes did not suit you. Icy cool pinks and blue-based mauves can also look ashy against the gold in your undertone.</p>
+  <div class="dots">
+    <span><i style="background:#8B4A2B"></i>Deep bronze</span>
+    <span><i style="background:#B5651D"></i>Copper</span>
+    <span><i style="background:#6B3A2A"></i>Dark chocolate</span>
+    <span><i style="background:#B8A8D8"></i>Icy lavender</span>
+  </div>
+</section>
+
+<footer>COLORS SHOWN ARE SCREEN APPROXIMATIONS.<br>TEST AGAINST YOUR OWN SKIN IN DAYLIGHT.</footer>
+</div>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('section.group,.avoid');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+  },{threshold:.12});
+  els.forEach(function(e){io.observe(e)});
+})();
+
+(function(){
+  var c=document.getElementById('stars');
+  if(!c||!c.getContext)return;
+  var ctx=c.getContext('2d');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var colors=['255,143,186','247,168,204','240,128,170','255,182,214','232,120,160'];
+  var stars=[],w=0,h=0,dpr=Math.min(window.devicePixelRatio||1,2);
+  function size(){
+    w=window.innerWidth;h=window.innerHeight;
+    c.width=w*dpr;c.height=h*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    var n=Math.round(Math.min(150,Math.max(60,w*h/9000)));
+    stars=[];
+    for(var i=0;i<n;i++){
+      stars.push({
+        x:Math.random()*w,
+        y:Math.random()*h,
+        r:Math.random()*1.1+0.5,
+        col:colors[Math.floor(Math.random()*colors.length)],
+        sp:Math.random()*0.0018+0.0006,
+        ph:Math.random()*Math.PI*2
+      });
+    }
+  }
+  function draw(t){
+    ctx.clearRect(0,0,w,h);
+    for(var i=0;i<stars.length;i++){
+      var s=stars[i];
+      var a=reduce?0.6:0.15+0.75*(0.5+0.5*Math.sin(t*s.sp*6+s.ph));
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle='rgba('+s.col+','+a.toFixed(3)+')';
+      ctx.fill();
+    }
+    if(!reduce)requestAnimationFrame(draw);
+  }
+  size();
+  window.addEventListener('resize',function(){size();if(reduce)draw(0);});
+  if(reduce){draw(0);}else{requestAnimationFrame(draw);}
+})();
+</script>
+</body>
+</html>
